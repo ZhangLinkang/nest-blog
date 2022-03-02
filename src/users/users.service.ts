@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import Sequelize from 'sequelize';
 
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -10,9 +11,12 @@ export class UsersService {
     @Inject('USER_REPOSITORY') private userRepository: typeof User,
   ) {}
   async find(username: string) {
+    const Op = Sequelize.Op;
     return this.userRepository.findOne({
+      attributes: ['phone', 'name', 'sex', 'status', 'password'],
       where: {
-        phone: username,
+        status: 0,
+        [Op.or]: [{ phone: username }, { name: username }],
       },
     });
   }

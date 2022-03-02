@@ -1,12 +1,11 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { CreateUserDto, Sex } from '../dto/create-user.dto';
 import { ApiProperty } from '@nestjs/swagger';
 @Table({
   tableName: 'user',
 })
 export class User extends Model<CreateUserDto> {
-  @ApiProperty({ example: 1, description: 'The age of the Cat' })
   @Column({
     comment: '用户姓名',
     type: Sequelize.STRING(20),
@@ -54,7 +53,7 @@ export class User extends Model<CreateUserDto> {
     comment: '邮箱',
     allowNull: false,
   })
-  Email: string;
+  email: string;
   /**
    * 角色表
    */
@@ -82,5 +81,9 @@ export class User extends Model<CreateUserDto> {
     comment: '性别 0 男 1 女 2 其他',
     allowNull: false,
   })
-  sex: number;
+  sex: Sex;
+  @Column({
+    // type: Sequelize.,
+  })
+  headPortrait: string;
 }
