@@ -83,7 +83,8 @@ export class User extends Model<CreateUserDto> {
   })
   sex: Sex;
   @Column({
-    // type: Sequelize.,
+    comment: '头像base64',
+    type: Sequelize.TEXT,
   })
   headPortrait: string;
 }
