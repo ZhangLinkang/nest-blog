@@ -20,8 +20,9 @@ export class AuthService {
    * @param password
    */
   async validate(username: string, password: string): Promise<any> {
-    // console.log(username, password);
+    console.log(username, password);
     const user = await this.userService.find(username);
+    console.log(user);
     // 注：实际中的密码处理应通过加密措施
     if (user && user.password === password) {
       const { password, ...userInfo } = user;
