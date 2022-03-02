@@ -6,7 +6,7 @@ import { Sex } from './create-user.dto';
  */
 export class LoginUser {
   @ApiProperty({
-    name: 'name',
+    name: 'username',
     description: '用户登录',
     type: 'string',
     example: 'root',
@@ -16,7 +16,7 @@ export class LoginUser {
     name: 'password',
     description: '密码',
     type: 'string',
-    example: 'md5(123456)',
+    example: 'e10adc3949ba59abbe56e057f20f883e',
   })
   password: string;
 }

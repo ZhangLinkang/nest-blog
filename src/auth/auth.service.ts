@@ -21,7 +21,7 @@ export class AuthService {
   async validate(username: string, password: string): Promise<any> {
     // console.log(username, password);
     const user = await this.userService.find(username);
-    // console.log(user.phone, password);
+    // console.log(user);
     // 注：实际中的密码处理应通过加密措施
     if (user && user.password === password) {
       const { password, ...userInfo } = user;
@@ -35,18 +35,16 @@ export class AuthService {
    * user login
    * @param user
    */
-  async login(user: any, res: Response): Promise<any> {
+  async login(user: any): Promise<any> {
     const { id, phone } = user;
-    // console.log(user, 'user', id, phone);
     const toekn = this.jwtService.sign({ phone: phone, id: id });
-    res.cookie('Set-Cookie', toekn);
-    return res.send({
+    return {
       token: toekn,
       // user:user._,
       ...user,
       status: 'ok',
       type: 'account',
       currentAuthority: 'admin',
-    });
+    };
   }
 }

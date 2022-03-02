@@ -13,7 +13,15 @@ export class UsersService {
   async find(username: string) {
     const Op = Sequelize.Op;
     return this.userRepository.findOne({
-      attributes: ['phone', 'name', 'sex', 'status', 'email', 'headPortrait'],
+      attributes: [
+        'phone',
+        'name',
+        'sex',
+        'status',
+        'email',
+        'headPortrait',
+        'password',
+      ],
       where: {
         status: 0,
         [Op.or]: [{ phone: username }, { name: username }],

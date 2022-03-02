@@ -24,18 +24,17 @@ export class AuthController {
     this.authService = authService;
   }
   @ApiTags('登录')
-  @HttpCode(200)
-  @UseGuards(AuthGuard('local'))
-  @ApiOperation({})
   @ApiResponse({
     description: '成功请求回来,其实就是200的描述',
     type: LoginResUser,
     status: 200,
   })
   @ApiInternalServerErrorResponse({ description: '服务端异常' })
+  @UseGuards(AuthGuard('local'))
+  @HttpCode(200)
   @Post('/login')
-  async login(@Body() user: LoginUser, @Response() res) {
-    // return '!2312';
-    return this.authService.login(user, res as any);
+  async login(@Body() user: LoginUser) {
+    // console.log(user, 'user');
+    return this.authService.login(user);
   }
 }
