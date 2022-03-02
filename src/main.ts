@@ -8,10 +8,10 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const options = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('博客系统')
+    .setDescription('开源博客')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('共享世界')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('doc', app, document);

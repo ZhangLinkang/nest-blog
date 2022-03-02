@@ -1,11 +1,12 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
 import { CreateUserDto } from '../dto/create-user.dto';
-
+import { ApiProperty } from '@nestjs/swagger';
 @Table({
   tableName: 'user',
 })
 export class User extends Model<CreateUserDto> {
+  @ApiProperty({ example: 1, description: 'The age of the Cat' })
   @Column({
     comment: '用户姓名',
     type: Sequelize.STRING(20),
