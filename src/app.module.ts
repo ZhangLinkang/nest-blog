@@ -8,6 +8,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
 import { MenuModule } from './menu/menu.module';
 import { FileModule } from './file/file.module';
+import { EventsModule } from './events/events.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -18,6 +19,7 @@ import { FileModule } from './file/file.module';
       rootPath: join(__dirname, '../html'),
     }),
     MenuModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
