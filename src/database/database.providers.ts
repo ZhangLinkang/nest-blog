@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from 'src/users/entities/user.entity';
 import * as sequelize from 'sequelize';
 import moment from 'moment';
+import { Menu } from 'src/menu/entities/menu.entity';
 export const databaseProviders = [
   {
     provide: 'SEQUELIZE',
@@ -29,7 +30,7 @@ export const databaseProviders = [
         },
         timezone: '+08:00', //东八时区
       });
-      sequelize.addModels([User]);
+      sequelize.addModels([User, Menu]);
       await sequelize.sync({
         // force: true,
         alter: true,

@@ -60,4 +60,9 @@ export class LoginResUser {
     type: 'string',
   })
   'headPortrait': string;
+  @ApiProperty({
+    name: 'id',
+    type: 'string',
+  })
+  id: string;
 }

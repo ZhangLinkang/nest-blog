@@ -21,6 +21,8 @@ export class UsersService {
         'email',
         'headPortrait',
         'password',
+        'id',
+        'tags',
       ],
       where: {
         status: 0,

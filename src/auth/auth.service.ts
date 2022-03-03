@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { LoginResUser } from 'src/users/dto/login-user.dto';
+import { returnValue } from 'src/shared/returnValue';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
   async validate(username: string, password: string): Promise<any> {
     // console.log(username, password);
     const user = await this.userService.find(username);
-    // console.log(user);
+    console.log(user);
     // 注：实际中的密码处理应通过加密措施
     if (user && user.password === password) {
       const { password, ...userInfo } = user;
@@ -36,15 +37,19 @@ export class AuthService {
    * @param user
    */
   async login(user: any): Promise<any> {
-    const { id, phone } = user;
-    const toekn = this.jwtService.sign({ phone: phone, id: id });
-    return {
-      token: toekn,
-      // user:user._,
-      ...user,
-      status: 'ok',
-      type: 'account',
-      currentAuthority: 'admin',
-    };
+    // console.log(user);
+
+    const { username, password } = user;
+    const { dataValues }: any = await this.validate(username, password);
+    // console.log(userInfo);
+    // const { userInfo } = dataValues;
+    const toekn = this.jwtService.sign(dataValues);
+    return returnValue({
+      data: {
+        token: toekn,
+        ...dataValues,
+        password: null,
+      },
+    });
   }
 }

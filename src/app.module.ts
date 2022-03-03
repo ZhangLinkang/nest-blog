@@ -6,7 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
-
+import { MenuModule } from './menu/menu.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../html'),
     }),
+    MenuModule,
   ],
   controllers: [AppController],
   providers: [AppService],
