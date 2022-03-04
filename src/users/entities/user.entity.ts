@@ -1,21 +1,21 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
 import { CreateUserDto, Sex } from '../dto/create-user.dto';
-import { ApiProperty } from '@nestjs/swagger';
+
 @Table({
-  tableName: 'user',
+  tableName: 'user'
 })
 export class User extends Model<CreateUserDto> {
   @Column({
     comment: '用户姓名',
     type: Sequelize.STRING(20),
-    allowNull: false,
+    allowNull: false
   })
   name: string;
   @Column({
     comment: '生日',
     type: Sequelize.STRING(19),
-    allowNull: false,
+    allowNull: false
   })
   birth: string;
   /**
@@ -24,16 +24,16 @@ export class User extends Model<CreateUserDto> {
   @Column({
     comment: '密码',
     type: Sequelize.STRING(32),
-    allowNull: false,
+    allowNull: false
   })
   password: string;
 
   @Column({
     type: Sequelize.INTEGER({
-      length: 1,
+      length: 1
     }),
     comment: '0正常状态 1非正常',
-    allowNull: false,
+    allowNull: false
   })
   status: number;
   /**
@@ -42,7 +42,7 @@ export class User extends Model<CreateUserDto> {
   @Column({
     type: Sequelize.STRING(11),
     comment: '手机号',
-    allowNull: true,
+    allowNull: true
   })
   phone: string;
   /**
@@ -51,7 +51,7 @@ export class User extends Model<CreateUserDto> {
   @Column({
     type: Sequelize.STRING(100),
     comment: '邮箱',
-    allowNull: false,
+    allowNull: false
   })
   email: string;
   /**
@@ -60,7 +60,7 @@ export class User extends Model<CreateUserDto> {
   @Column({
     type: Sequelize.STRING(100),
     comment: '角色 逗号拼接',
-    allowNull: true,
+    allowNull: true
   })
   tags: string;
   /**
@@ -68,7 +68,7 @@ export class User extends Model<CreateUserDto> {
    */
   @Column({
     type: Sequelize.STRING(11),
-    comment: '密码盐',
+    comment: '密码盐'
   })
   salt: string;
   /**
@@ -76,15 +76,21 @@ export class User extends Model<CreateUserDto> {
    */
   @Column({
     type: Sequelize.INTEGER({
-      length: 1,
+      length: 1
     }),
     comment: '性别 0 男 1 女 2 其他',
-    allowNull: false,
+    allowNull: false
   })
   sex: Sex;
   @Column({
     comment: '头像base64',
-    type: Sequelize.TEXT,
+    type: Sequelize.TEXT
   })
   headPortrait: string;
+
+  @Column({
+    type: Sequelize.STRING(100),
+    comment: '别名'
+  })
+  nickname: string;
 }
